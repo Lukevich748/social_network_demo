@@ -54,6 +54,10 @@ class UIHelper:
         element = self.wait.until(EC.element_to_be_clickable(locator), message=message)
         return element
 
+    def wait_url_to_be(self, url: str, message=None) -> WebElement:
+        element = self.wait.until(EC.url_to_be(url), message=message)
+        return element
+
     # Scrolls
     def scroll_by(self, x, y):
         self.driver.execute_script(f"window.scrollTo({x}, {y})")

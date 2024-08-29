@@ -30,13 +30,13 @@ def driver(request):
         driver.quit()
 
 
-@pytest.fixture(autouse=True, scope="session")
-def setup_allure_environment_properties():
-    properties = {
-        "Stage": os.environ["STAGE"],
-        "Browser": os.environ["BROWSER"],
-        "Python Version": f"{sys.version}"
-    }
-    with open("allure-results/environment.properties", "w") as file:
-        for key, value in properties.items():
-            file.write(f"{key}={value}\n")
+# @pytest.fixture(autouse=True, scope="session")
+# def setup_allure_environment_properties():
+#     properties = {
+#         "Stage": os.environ["STAGE"],
+#         "Browser": os.environ["BROWSER"],
+#         "Python Version": f"{sys.version}"
+#     }
+#     with open("allure-results/environment.properties", "w") as file:
+#         for key, value in properties.items():
+#             file.write(f"{key}={value}\n")
