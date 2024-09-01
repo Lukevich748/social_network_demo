@@ -31,6 +31,10 @@ class UIHelper:
         element = self.wait_visibility_of_element(locator)
         return element
 
+    def find_all(self, locator: tuple) -> list[WebElement]:
+        elements = self.wait_visibility_of_elements(locator)
+        return elements
+
     def fill(self, locator: tuple, text: str):
         self.find(locator).send_keys(text)
 
@@ -54,7 +58,11 @@ class UIHelper:
         element = self.wait.until(EC.element_to_be_clickable(locator), message=message)
         return element
 
-    def wait_url_to_be(self, url: str, message=None) -> WebElement:
+    def wait_present_text_in_element(self, locator: tuple, text: str, message=None) -> bool:
+        element = self.wait.until(EC.text_to_be_present_in_element(locator, text),  message=message)
+        return element
+
+    def wait_url_to_be(self, url: str, message=None) -> bool:
         element = self.wait.until(EC.url_to_be(url), message=message)
         return element
 
