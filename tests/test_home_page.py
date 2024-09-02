@@ -9,7 +9,7 @@ fake = Faker()
 
 
 @allure.epic("User Content Management")
-class TestHomePage(BaseTest):
+class TestNewsFeedPage(BaseTest):
 
     @pytest.mark.smoker
     @allure.severity(Severity.CRITICAL)
@@ -19,5 +19,7 @@ class TestHomePage(BaseTest):
         self.login_page().open()
         self.login_page().is_opened()
         self.login_page().login_as(Credentials.USER_LOGIN, Credentials.USER_PASSWORD)
-        self.home_page().is_opened()
-        self.home_page().create_new_post(fake.text(max_nb_chars=100))
+        self.news_feed_page().is_opened()
+        self.news_feed_page().create_new_post(fake.text(max_nb_chars=100))
+
+        

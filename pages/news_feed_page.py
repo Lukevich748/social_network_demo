@@ -3,7 +3,7 @@ from base.base_page import BasePage
 from data.links import Links
 
 
-class HomePage(BasePage):
+class NewsFeedPage(BasePage):
 
     _PAGE_URL = Links.HOME_PAGE
 
