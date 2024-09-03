@@ -48,4 +48,4 @@ class LoginPage(BasePage):
     def click_login_button(self):
         self.wait_element_to_be_clickable(self._LOGIN_BUTTON)
         self.click(self._LOGIN_BUTTON)
-        assert self.wait_url_to_be(Links.HOME_PAGE, message="The URL did not change to the expected")
+        assert self.wait_url_to_be(Links.NEWS_FEED_PAGE, message="The URL did not change to the expected")

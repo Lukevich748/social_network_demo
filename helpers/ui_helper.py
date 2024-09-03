@@ -58,8 +58,8 @@ class UIHelper:
         element = self.wait.until(EC.element_to_be_clickable(locator), message=message)
         return element
 
-    def wait_present_text_in_element(self, locator: tuple, text: str, message=None) -> bool:
-        element = self.wait.until(EC.text_to_be_present_in_element(locator, text),  message=message)
+    def wait_text_to_be_present_in_element_attribute(self, locator: tuple, attribute: str, text: str, message=None) -> bool:
+        element = self.wait.until(EC.text_to_be_present_in_element_attribute(locator, attribute, text),  message=message)
         return element
 
     def wait_url_to_be(self, url: str, message=None) -> bool:
