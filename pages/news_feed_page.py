@@ -17,7 +17,6 @@ class NewsFeedPage(BasePage):
 
     _POST_EDIT_SAVE_BUTTON = "//div[@class='control']//a[text()='Save']"
     _POST_EDIT_TEXT_INPUT = "//textarea[@id='post-edit']"
-    _POST_EDIT_ALERT = "//div[contains(@class, 'alert')]"
 
     # Posts
     @allure.step("Enter Post Text")
@@ -69,14 +68,15 @@ class NewsFeedPage(BasePage):
                 assert edited_post_text == self.find(self._POST_EDIT_TEXT_INPUT).get_attribute("value"), f"The input area does not contain '{edited_post_text}'"
 
                 self.click(self._POST_EDIT_SAVE_BUTTON)
-                self.wait_visibility_of_element(self._POST_EDIT_ALERT)
-                assert "Post successfully saved" == self.find(self._POST_EDIT_ALERT).text, f"Incorrect alert"
                 return True
 
         raise AssertionError("Required post not found")
 
     @allure.step("Check Post Edit")
     def is_post_edited(self, edited_post_text):
+        self.wait_visibility_of_element(self._SUCCESS_ALERT)
+        assert "Post successfully saved" == self.find(self._SUCCESS_ALERT).text, "Something went wrong"
+
         posts_text_list = self.find_all(self._POST_ITEM_CONTENT_TEXT)
         for post in posts_text_list:
             if edited_post_text in post.text:

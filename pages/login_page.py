@@ -14,11 +14,16 @@ class LoginPage(BasePage):
     _LOGIN_BUTTON = "//input[@value='Login']"
 
     @allure.step("Successful Login into Account")
-    def login_as(self, user_name, password):
-        if os.path.exists("cookies.pkl"):
+    def login_as(self, user_name, password, role="user"):
+        if role == "admin":
+            cookies_file = "cookies/admin-cookies.pkl"
+        else:
+            cookies_file = "cookies/user-cookies.pkl"
+
+        if os.path.exists(cookies_file):
             self.driver.delete_all_cookies()
 
-            with open("cookies.pkl", "rb") as cookies_file:
+            with open(cookies_file, "rb") as cookies_file:
                 cookies = pickle.load(cookies_file)
                 for cookie in cookies:
                     self.driver.add_cookie(cookie)
@@ -27,7 +32,7 @@ class LoginPage(BasePage):
             self.enter_user_name(user_name)
             self.enter_password(password)
             self.click_login_button()
-            with open("cookies.pkl", "wb") as cookies_file:
+            with open(cookies_file, "wb") as cookies_file:
                 pickle.dump(self.driver.get_cookies(), cookies_file)
 
     @allure.step("Enter user name")

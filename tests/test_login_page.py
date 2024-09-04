@@ -15,4 +15,4 @@ class TestLoginPage(BaseTest):
     def test_successful_login(self):
         self.login_page().open()
         self.login_page().is_opened()
-        self.login_page().login_as(Credentials.USER_LOGIN, Credentials.USER_PASSWORD)
+        self.login_page().login_as(user_name=Credentials.USER_LOGIN, password=Credentials.USER_PASSWORD)
