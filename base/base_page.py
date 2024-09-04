@@ -49,7 +49,7 @@ class BasePage(UIHelper, metaclass=MetaLocator):
             assert friend_name in search_result.text, f"User with name '{friend_name}' was not found."
             self.click(self._ADD_FRIEND_BUTTON)
 
-    @allure.step("Check Post Edit")
+    @allure.step("Check Send a Friend Request")
     def is_friend_request_sent(self):
         self.wait_visibility_of_element(self._CANCEL_REQUEST_BUTTON)
         self.wait_visibility_of_element(self._SUCCESS_ALERT)
@@ -65,6 +65,6 @@ class TopBarMenu(UIHelper, metaclass=MetaLocator):
         super().__init__(driver)
         self.friends_requests = FriendsRequests(self.driver)
 
-    @allure.step("Open | Close Friends Requests Top Bar Menu")
-    def click_friend_requests(self):
+    @allure.step("Open 'Friends Requests'")
+    def open_friend_requests(self):
         self.click(self._FRIEND_REQUESTS_BUTTON)
