@@ -31,7 +31,7 @@ class NewsFeedPage(BasePage):
         self.click(self._POST_BUTTON)
         self.wait_element_to_be_clickable(self._POST_BUTTON)
 
-    @allure.step("Check Post Creation")
+    @allure.step("Check Post Created")
     def is_post_created(self, post_text: str):
         posts_text_list = self.find_all(self._POST_ITEM_CONTENT_TEXT)
         for post in posts_text_list:
@@ -47,7 +47,7 @@ class NewsFeedPage(BasePage):
                 self.click(self._POST_ITEM_ACTION_DROPDOWN)
                 self.click(self._POST_ITEM_DELETE_BUTTON)
 
-    @allure.step("Check Post Deletion")
+    @allure.step("Check Post Deleted")
     def is_post_deleted(self, post_text: str):
         posts_text_list = self.find_all(self._POST_ITEM_CONTENT_TEXT)
         for post in posts_text_list:
@@ -72,7 +72,7 @@ class NewsFeedPage(BasePage):
 
         raise AssertionError("Required post not found")
 
-    @allure.step("Check Post Edit")
+    @allure.step("Check Post Edited")
     def is_post_edited(self, edited_post_text):
         self.wait_visibility_of_element(self._SUCCESS_ALERT)
         assert "Post successfully saved" == self.find(self._SUCCESS_ALERT).text, "Something went wrong"

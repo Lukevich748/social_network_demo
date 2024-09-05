@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 from faker import Faker

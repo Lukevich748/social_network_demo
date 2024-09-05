@@ -30,4 +30,5 @@ class FriendsRequests(UIHelper, metaclass=MetaLocator):
     def click_confirm_button(self, friend_name):
         request_item = self.get_item_by_name(friend_name)
         confirm_button = request_item.find_element(*self._ITEM_CONFIRM_BUTTON)
-        confirm_button.click()
+        self.click(confirm_button)
+        self.wait_invisibility_of_element(confirm_button, message="The button 'Confirm' was not clicked.")
