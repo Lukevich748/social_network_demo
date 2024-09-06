@@ -1,4 +1,5 @@
 import platform
+import allure
 from selenium.webdriver import Keys
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
@@ -15,10 +16,20 @@ class UIHelper:
         self.actions = ActionChains(self.driver)
 
     def open(self):
-        self.driver.get(self._PAGE_URL)
+        with allure.step(f"Open Page: '{self._PAGE_URL}'"):
+            self.driver.get(self._PAGE_URL)
 
     def is_opened(self):
-        self.wait.until(EC.url_to_be(self._PAGE_URL))
+        with allure.step(f"Page: '{self._PAGE_URL}' is opened"):
+            self.wait.until(EC.url_to_be(self._PAGE_URL))
+
+    def is_opened_user_admin(self, role="user"):
+        if role == "user":
+            with allure.step(f"Page: '{self._PAGE_URL_USER}' is opened"):
+                self.wait.until(EC.url_to_be(self._PAGE_URL_USER))
+        else:
+            with allure.step(f"Page: '{self._PAGE_URL_ADMIN}' is opened"):
+                self.wait.until(EC.url_to_be(self._PAGE_URL_ADMIN))
 
     @property
     def cmd_ctr_button(self):
@@ -67,7 +78,7 @@ class UIHelper:
         return element
 
     # Scrolls
-    def scroll_by(self, x, y):
+    def scroll_by(self, x: int, y: int):
         self.driver.execute_script(f"window.scrollTo({x}, {y})")
 
     def scroll_to_bottom(self):

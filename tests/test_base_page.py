@@ -9,9 +9,9 @@ fake = Faker()
 
 
 @allure.epic("User Social Interaction")
-class TestBasePagePage(BaseTest):
+class TestBasePage(BaseTest):
 
-    @pytest.mark.smoker
+    @pytest.mark.smoke
     @allure.severity(Severity.CRITICAL)
     @allure.feature("Friend Management")
     @allure.story("Add User to Friends List")
