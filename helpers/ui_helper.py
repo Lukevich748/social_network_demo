@@ -82,15 +82,10 @@ class UIHelper:
         self.driver.execute_script(f"window.scrollTo({x}, {y})")
 
     def scroll_to_bottom(self):
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+        self.driver.execute_script("window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' });")
 
     def scroll_to_top(self):
-        self.driver.execute_script("window.scrollTo(0, 0)")
+        self.driver.execute_script("window.scrollTo({ top: 0, behavior: 'instant' });")
 
-    def scroll_to_element(self, locator):
-        self.actions.scroll_to_element(self.find(locator))
-        self.driver.execute_script("""
-            window.scrollTo({
-                top: window.scrollY + 500,
-            });
-            """)
+    def scroll_to_element(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", element)

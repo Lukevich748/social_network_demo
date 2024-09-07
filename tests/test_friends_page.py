@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 from faker import Faker
@@ -10,13 +8,13 @@ from data.credentials import Credentials
 fake = Faker()
 
 
-@allure.epic("")
+@allure.epic("Friend's Interaction Management")
 class TestFriendsPage(BaseTest):
 
     @pytest.mark.smoker
     @allure.severity(Severity.CRITICAL)
-    @allure.feature("")
-    @allure.story("")
+    @allure.feature("Send Message to Friend")
+    @allure.story("Send a message to a Friend from the Friend's Profile")
     # @pytest.mark.parametrize("add_users", [1], indirect=True)
     def test_send_message_to_friend(self):
 
@@ -28,5 +26,5 @@ class TestFriendsPage(BaseTest):
         self.news_feed_page().is_opened()
         self.news_feed_page().links_dropdown.open_friends_page()
         self.friends_page().is_opened_user_admin(role="admin")
-        self.friends_page().open_friends_profile(friend_name="Lukevich")
-        time.sleep(3)
+        self.friends_page().open_friends_profile(friend_name="Artem Lukevich")
+        self.friends_page().is_friends_profile_opened(friend_name="Artem Lukevich")
