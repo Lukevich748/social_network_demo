@@ -16,6 +16,10 @@ class FriendsPage(BasePage):
     _NEXT_PAGE_BUTTON = "//ul[contains(@class, 'ossn-pagination')]//a[text()='Last']"
 
     _FRIEND_PROFILE_FULL_NAME = "//div[@class='user-fullname']"
+    _MESSAGE_BUTTON = "//a[@id='profile-message']"
+    _MESSAGE_TEXT_INPUT = "//textarea[@placeholder='Enter text here']"
+    _SEND_BUTTON = "//input[@value='Send']"
+    _SENT_MESSAGES_LIST = "//div[@class='message-box-sent text']/span"
 
 
     @property
@@ -48,3 +52,24 @@ class FriendsPage(BasePage):
     def is_friends_profile_opened(self, friend_name):
         with allure.step(f"Check '{friend_name}'s' Profile is Opened"):
             assert friend_name in self.find(self._FRIEND_PROFILE_FULL_NAME).text
+
+    @allure.step("Click 'Message' Button")
+    def click_message_button(self):
+        self.click(self._MESSAGE_BUTTON)
+
+    @allure.step("Enter Message Text")
+    def enter_message_text(self, message_text: str):
+        self.wait_element_to_be_clickable(self._MESSAGE_TEXT_INPUT)
+        self.find(self._MESSAGE_TEXT_INPUT).clear()
+        self.fill(self._MESSAGE_TEXT_INPUT, message_text)
+        assert message_text == self.find(self._MESSAGE_TEXT_INPUT).get_attribute("value"), f"The input area does not contain '{message_text}'"
+
+    @allure.step("Click 'Send' Button")
+    def click_send_button(self):
+        self.click(self._SEND_BUTTON)
+        self.wait_element_to_be_clickable(self._SEND_BUTTON)
+
+    @allure.step("Check Send a Message to Friend")
+    def is_message_sent(self, message_text: str):
+        sent_messages_list = self.find_all(self._SENT_MESSAGES_LIST)
+        assert message_text == sent_messages_list[-1].text, "Message was not sent."

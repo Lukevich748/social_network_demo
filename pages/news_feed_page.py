@@ -26,7 +26,7 @@ class NewsFeedPage(BasePage):
         self.fill(self._POST_TEXT_INPUT, post_text)
         assert post_text == self.find(self._POST_TEXT_INPUT).get_attribute("value"), f"The input area does not contain '{post_text}'"
 
-    @allure.step("Click Post Button")
+    @allure.step("Click 'Post' Button")
     def click_post_button(self):
         self.click(self._POST_BUTTON)
         self.wait_element_to_be_clickable(self._POST_BUTTON)

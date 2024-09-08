@@ -3,7 +3,6 @@ import pytest
 from faker import Faker
 from allure_commons.types import Severity
 from base.base_test import BaseTest
-from data.credentials import Credentials
 
 fake = Faker()
 
@@ -20,7 +19,7 @@ class TestNewsFeedPage(BaseTest):
 
         self.login_page().open()
         self.login_page().is_opened()
-        self.login_page().login_as(user_name=Credentials.USER_LOGIN, password=Credentials.USER_PASSWORD)
+        self.login_page().login_as(role="user")
         self.news_feed_page().is_opened()
         self.news_feed_page().enter_post_text(post_text=post_text)
         self.news_feed_page().click_post_button()
@@ -36,7 +35,7 @@ class TestNewsFeedPage(BaseTest):
 
         self.login_page().open()
         self.login_page().is_opened()
-        self.login_page().login_as(user_name=Credentials.USER_LOGIN, password=Credentials.USER_PASSWORD)
+        self.login_page().login_as(role="user")
         self.news_feed_page().is_opened()
         self.news_feed_page().enter_post_text(post_text=post_text)
         self.news_feed_page().click_post_button()
@@ -53,7 +52,7 @@ class TestNewsFeedPage(BaseTest):
 
         self.login_page().open()
         self.login_page().is_opened()
-        self.login_page().login_as(user_name=Credentials.USER_LOGIN, password=Credentials.USER_PASSWORD)
+        self.login_page().login_as(role="user")
         self.news_feed_page().is_opened()
         self.news_feed_page().enter_post_text(post_text=post_text)
         self.news_feed_page().click_post_button()

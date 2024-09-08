@@ -2,6 +2,7 @@ import os.path
 import pickle
 import allure
 from base.base_page import BasePage
+from data.credentials import Credentials
 from data.links import Links
 
 
@@ -14,10 +15,14 @@ class LoginPage(BasePage):
     _LOGIN_BUTTON = "//input[@value='Login']"
 
     @allure.step("Successful Login into Account")
-    def login_as(self, user_name, password, role="user"):
+    def login_as(self, role="user"):
         if role == "admin":
+            user_name = Credentials.ADMIN_LOGIN
+            password = Credentials.ADMIN_PASSWORD
             cookies_file = "cookies/admin-cookies.pkl"
         else:
+            user_name = Credentials.USER_LOGIN
+            password = Credentials.USER_PASSWORD
             cookies_file = "cookies/user-cookies.pkl"
 
         if os.path.exists(cookies_file):
