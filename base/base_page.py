@@ -2,7 +2,8 @@ import allure
 from selenium.webdriver import Keys
 from base.base_components.groups_dropdown import GroupsDropdown
 from base.base_components.links_dropdown import LinksDropdown
-from base.base_components.top_bar_menu.components.friends_requests import FriendsRequests
+from base.base_components.top_bar_menu.components.friends_requests import FriendRequests
+from base.base_components.top_bar_menu.components.messages import Messages
 from helpers.ui_helper import UIHelper
 from metaclasses.meta_locator import MetaLocator
 
@@ -59,12 +60,18 @@ class BasePage(UIHelper, metaclass=MetaLocator):
 class TopBarMenu(UIHelper, metaclass=MetaLocator):
 
     # Top Bar Menu
-    _FRIEND_REQUESTS_BUTTON = "//li[@id='ossn-notif-friends']"
+    _FRIEND_REQUESTS_ICON = "//li[@id='ossn-notif-friends']"
+    _MESSAGES_ICON = "//li[@id='ossn-notif-messages']"
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.friends_requests = FriendsRequests(self.driver)
+        self.friends_requests = FriendRequests(self.driver)
+        self.messages = Messages(self.driver)
 
-    @allure.step("Open 'Friends Requests'")
+    @allure.step("Open 'Friends Requests' in Top Bar Menu")
     def open_friend_requests(self):
-        self.click(self._FRIEND_REQUESTS_BUTTON)
+        self.click(self._FRIEND_REQUESTS_ICON)
+
+    @allure.step("Open 'Messages' in Top Bar Menu")
+    def open_messages(self):
+        self.click(self._MESSAGES_ICON)

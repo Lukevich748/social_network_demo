@@ -31,5 +31,5 @@ class TestBasePage(BaseTest):
         self.login_page(admin).login_as(role="admin")
         self.news_feed_page(admin).is_opened()
         self.news_feed_page(admin).top_bar_menu.open_friend_requests()
-        self.news_feed_page(admin).top_bar_menu.friends_requests.is_friend_request_got(friend_name="Artem Lukevich")
+        self.news_feed_page(admin).top_bar_menu.friends_requests.is_friend_request_received_from(friend_name="Artem Lukevich")
         self.news_feed_page(admin).top_bar_menu.friends_requests.click_confirm_button(friend_name="Artem Lukevich")
