@@ -10,7 +10,7 @@ fake = Faker()
 @allure.epic("Friend's Interaction Management")
 class TestFriendsPage(BaseTest):
 
-    @pytest.mark.smoker
+    @pytest.mark.smoke
     @allure.severity(Severity.CRITICAL)
     @allure.feature("Send Message to Friend")
     @allure.story("Send a Message to a Friend from the Friend's Profile")
@@ -25,7 +25,7 @@ class TestFriendsPage(BaseTest):
         self.login_page().login_as(role="user")
         self.news_feed_page().is_opened()
         self.news_feed_page().links_dropdown.open_friends_page()
-        self.friends_page().is_opened_user_admin()
+        self.friends_page().is_opened(role="user")
         self.friends_page().open_friends_profile(friend_name="Administrator")
         self.friends_page().is_friends_profile_opened(friend_name="Administrator")
         self.friends_page().click_message_button()

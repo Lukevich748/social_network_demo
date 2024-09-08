@@ -3,7 +3,7 @@ from helpers.ui_helper import UIHelper
 from metaclasses.meta_locator import MetaLocator
 
 
-class LinksDropdown(UIHelper, metaclass=MetaLocator):
+class LinksDropdown(UIHelper):
 
     _NEWS_FEED_LINK = "//li[text()='News Feed']"
     _MESSAGES_LINK = "//li[text()='Messages']"

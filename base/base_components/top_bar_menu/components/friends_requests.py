@@ -3,7 +3,7 @@ from helpers.ui_helper import UIHelper
 from metaclasses.meta_locator import MetaLocator
 
 
-class FriendRequests(UIHelper, metaclass=MetaLocator):
+class FriendRequests(UIHelper):
 
     _FRIEND_REQUESTS_LIST = "//div[@class='notification-friends']"
     _FRIEND_REQUEST_FULL_NAME = ".//a"

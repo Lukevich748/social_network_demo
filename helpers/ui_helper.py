@@ -6,9 +6,10 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver import ActionChains
+from metaclasses.meta_locator import MetaLocator
 
 
-class UIHelper:
+class UIHelper(metaclass=MetaLocator):
 
     def __init__(self, driver):
         self.driver: WebDriver = driver
@@ -19,17 +20,16 @@ class UIHelper:
         with allure.step(f"Open Page: '{self._PAGE_URL}'"):
             self.driver.get(self._PAGE_URL)
 
-    def is_opened(self):
-        with allure.step(f"Page: '{self._PAGE_URL}' is opened"):
-            self.wait.until(EC.url_to_be(self._PAGE_URL))
-
-    def is_opened_user_admin(self, role="user"):
+    def is_opened(self, role=None):
         if role == "user":
             with allure.step(f"Page: '{self._PAGE_URL_USER}' is opened"):
                 self.wait.until(EC.url_to_be(self._PAGE_URL_USER))
-        else:
+        elif role == "admin":
             with allure.step(f"Page: '{self._PAGE_URL_ADMIN}' is opened"):
                 self.wait.until(EC.url_to_be(self._PAGE_URL_ADMIN))
+        else:
+            with allure.step(f"Open Page: '{self._PAGE_URL}'"):
+                self.driver.get(self._PAGE_URL)
 
     @property
     def cmd_ctr_button(self):

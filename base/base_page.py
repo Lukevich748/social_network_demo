@@ -5,10 +5,9 @@ from base.base_components.links_dropdown import LinksDropdown
 from base.base_components.top_bar_menu.components.friends_requests import FriendRequests
 from base.base_components.top_bar_menu.components.messages import Messages
 from helpers.ui_helper import UIHelper
-from metaclasses.meta_locator import MetaLocator
 
 
-class BasePage(UIHelper, metaclass=MetaLocator):
+class BasePage(UIHelper):
 
     # Side Bar Menu
     _LINKS_DROPDOWN = "//div[@class='sidebar-menu']//a[text()='Links']"
@@ -57,7 +56,7 @@ class BasePage(UIHelper, metaclass=MetaLocator):
         assert "Friend Request Sent" == self.find(self._SUCCESS_ALERT).text, "Request to friend was not sent."
 
 
-class TopBarMenu(UIHelper, metaclass=MetaLocator):
+class TopBarMenu(UIHelper):
 
     # Top Bar Menu
     _FRIEND_REQUESTS_ICON = "//li[@id='ossn-notif-friends']"

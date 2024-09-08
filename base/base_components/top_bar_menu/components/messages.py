@@ -3,7 +3,7 @@ from helpers.ui_helper import UIHelper
 from metaclasses.meta_locator import MetaLocator
 
 
-class Messages(UIHelper, metaclass=MetaLocator):
+class Messages(UIHelper):
 
     _INBOX_MESSAGES_LIST = "//div[@class='user-item message-new']"
     _FRIEND_FULL_NAME = ".//div[@class='name']"

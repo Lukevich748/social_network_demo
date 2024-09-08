@@ -55,7 +55,7 @@ class NewsFeedPage(BasePage):
                 raise AssertionError("Post was not deleted")
 
     @allure.step("Edit a Post")
-    def edit_post(self, post_text, edited_post_text):
+    def edit_post(self, post_text, new_post_text):
         posts_text_list = self.find_all(self._POST_ITEM_CONTENT_TEXT)
         for post in posts_text_list:
             if post_text in post.text:
@@ -64,8 +64,8 @@ class NewsFeedPage(BasePage):
                 self.wait_visibility_of_element(self._POST_EDIT_SAVE_BUTTON)
 
                 self.find(self._POST_EDIT_TEXT_INPUT).clear()
-                self.fill(self._POST_EDIT_TEXT_INPUT, edited_post_text)
-                assert edited_post_text == self.find(self._POST_EDIT_TEXT_INPUT).get_attribute("value"), f"The input area does not contain '{edited_post_text}'"
+                self.fill(self._POST_EDIT_TEXT_INPUT, new_post_text)
+                assert new_post_text == self.find(self._POST_EDIT_TEXT_INPUT).get_attribute("value"), f"The input area does not contain '{new_post_text}'"
 
                 self.click(self._POST_EDIT_SAVE_BUTTON)
                 return True
