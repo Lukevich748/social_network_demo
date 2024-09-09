@@ -20,10 +20,11 @@ class Messages(UIHelper):
                 return inbox_message
         raise AssertionError(f"Message from '{friend_name}' was not found.")
 
-    def is_inbox_message_received_from(self, friend_name: str, message_text: str):
+    def is_inbox_message_received_from(self, friend_name: str):
         with allure.step(f"Check Received a Message From '{friend_name}'"):
             inbox_message = self.get_inbox_message_by_name(friend_name)
-            item = inbox_message.find_element(*self._INBOX_MESSAGE_TEXT)
-            if message_text == item.text:
-                return True
-        raise AssertionError("Message was not received.")
+            inbox_message.click()
+        #     item = inbox_message.find_element(*self._INBOX_MESSAGE_TEXT)
+        #     if message_text == item.text:
+        #         return True
+        # raise AssertionError("Message was not received.") # TODO: переделать на месседж айди

@@ -38,6 +38,7 @@ def add_users(request):
     for driver in drivers:
         driver.quit()
 
+
 @pytest.fixture(autouse=True, scope="class")
 def generate_text(request):
     post_text = Faker().text(max_nb_chars=100)
