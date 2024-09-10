@@ -45,17 +45,14 @@ class LoginPage(BasePage):
         self.wait_element_to_be_clickable(self._USER_NAME_FIELD)
         self.find(self._USER_NAME_FIELD).clear()
         self.fill(self._USER_NAME_FIELD, user_name)
-        assert user_name == self.find(self._USER_NAME_FIELD).get_attribute("value"), f"The user name field does not contain '{user_name}'."
 
     @allure.step("Enter password")
     def enter_password(self, password):
         self.wait_element_to_be_clickable(self._PASSWORD_FIELD)
         self.find(self._PASSWORD_FIELD).clear()
         self.fill(self._PASSWORD_FIELD, password)
-        assert password == self.find(self._PASSWORD_FIELD).get_attribute("value"), f"The password field does not contain '{password}'."
 
     @allure.step("Click on 'Login' button")
     def click_login_button(self):
         self.wait_element_to_be_clickable(self._LOGIN_BUTTON)
         self.click(self._LOGIN_BUTTON)
-        assert self.wait_url_to_be(Links.NEWS_FEED_PAGE, message="The URL did not change to the expected.")

@@ -15,3 +15,4 @@ class TestLoginPage(BaseTest):
         self.login_page().open()
         self.login_page().is_opened()
         self.login_page().login_as(role="user")
+        self.news_feed_page().is_opened()

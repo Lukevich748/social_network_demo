@@ -28,8 +28,8 @@ class UIHelper(metaclass=MetaLocator):
             with allure.step(f"Page: '{self._PAGE_URL_ADMIN}' is opened"):
                 self.wait.until(EC.url_to_be(self._PAGE_URL_ADMIN))
         else:
-            with allure.step(f"Open Page: '{self._PAGE_URL}'"):
-                self.driver.get(self._PAGE_URL)
+            with allure.step(f"Page: '{self._PAGE_URL}' is opened"):
+                self.wait.until(EC.url_to_be(self._PAGE_URL))
 
     @property
     def cmd_ctr_button(self):
