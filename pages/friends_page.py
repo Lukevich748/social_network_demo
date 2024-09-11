@@ -36,18 +36,16 @@ class FriendsPage(BasePage):
             for friend_item in self._friends_list:
                 user_link = friend_item.find_element(*self._ITEM_FRIEND_NAME)
                 if friend_name in user_link.text:
-                    return friend_item
+                    return user_link
             next_page_button = self.find(self._NEXT_PAGE_BUTTON)
             self.scroll_to_element(next_page_button)
             next_page_button.click()
 
-    def open_friends_profile(self, friend_name):
+    def open_friends_profile(self, friend_name: str):
         with allure.step(f"Open Friend's Profile: '{friend_name}'"):
-            friend_item = self.get_friend_item_by_name(friend_name)
-            user_link = friend_item.find_element(*self._ITEM_FRIEND_NAME)
-            if friend_name in user_link.text:
-                self.scroll_to_element(user_link)
-                user_link.click()
+            user_link = self.get_friend_item_by_name(friend_name)
+            self.scroll_to_element(user_link)
+            user_link.click()
 
     def is_friends_profile_opened(self, friend_name):
         with allure.step(f"Check '{friend_name}'s' Profile is Opened"):
