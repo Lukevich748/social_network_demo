@@ -7,7 +7,7 @@ from faker import Faker
 
 def get_driver():
     options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
+    options.add_argument("--headless=old")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--log-level=3")
     options.add_argument("--disable-search-engine-choice-screen")
@@ -24,6 +24,8 @@ def driver(request):
     driver = get_driver()
     request.cls.driver = driver
     yield
+    if os.path.exists(os.path.join(os.getcwd(), "cookies", "user-cookies.pkl")):
+        os.remove(os.path.join(os.getcwd(), "cookies", "user-cookies.pkl"))
     driver.quit()
 
 
