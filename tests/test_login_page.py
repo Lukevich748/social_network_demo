@@ -7,7 +7,7 @@ from base.base_test import BaseTest
 @allure.epic("User Authentication")
 class TestLoginPage(BaseTest):
 
-    @pytest.mark.smokes
+    @pytest.mark.smoke
     @allure.severity(Severity.CRITICAL)
     @allure.feature("Login Functionality")
     @allure.story("Successful Login with Valid Credentials")

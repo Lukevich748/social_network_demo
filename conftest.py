@@ -8,9 +8,9 @@ from faker import Faker
 def get_driver():
     options = webdriver.ChromeOptions()
     options.add_argument("--no-sandbox")
-    options.add_argument("--headless")
-    options.add_argument("--window-size=1920,1080")
+    # options.add_argument("--headless")
     options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
     options.add_argument("--log-level=3")
     options.add_argument("--disable-search-engine-choice-screen")
     options.add_argument("--disable-blink-features=AutomationControlled")
@@ -28,6 +28,15 @@ def driver(request):
     yield
     driver.quit()
 
+@pytest.fixture(autouse=True, scope="class")
+def delete_cookies_after_tests():
+    cookies_folder = os.path.join(os.getcwd(), "cookies")
+
+    if os.path.exists(cookies_folder):
+        for file in os.listdir(cookies_folder):
+            file_path = os.path.join(cookies_folder, file)
+            if os.path.isfile(file_path) and file.endswith('.pkl'):
+                os.remove(file_path)
 
 @pytest.fixture()
 def add_users(request):

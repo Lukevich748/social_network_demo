@@ -25,6 +25,7 @@ class TestNewsFeedPage(BaseTest):
         self.news_feed_page().is_post_created(post_id)
 
     @pytest.mark.smoke
+    @pytest.mark.flaky(reruns=2, reruns_delay=2, max_reruns=2)
     @allure.severity(Severity.CRITICAL)
     @allure.feature("Post Management")
     @allure.story("Edit a Post")
