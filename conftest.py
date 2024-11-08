@@ -31,7 +31,7 @@ def driver(request):
 @pytest.fixture(autouse=True, scope="class")
 def delete_cookies_after_tests():
     cookies_folder = os.path.join(os.getcwd(), "cookies")
-
+    yield 
     if os.path.exists(cookies_folder):
         for file in os.listdir(cookies_folder):
             file_path = os.path.join(cookies_folder, file)
